@@ -12,7 +12,7 @@ fn main() -> Result<()> {
     // start N works and M requests
 
     println!("Start {} workers and {} requests", N, M);
-    println!("{:?}", metrics.snapshot()?);
+    println!("{:?}", metrics);
 
     for i in 0..N {
         task_worker(i, metrics.clone())?; // Metrics {data: Arc::clone(&metrics.data)}
