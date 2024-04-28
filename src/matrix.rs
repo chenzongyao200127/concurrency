@@ -146,17 +146,6 @@ where
     }
 }
 
-impl<T> Mul for Matrix<T>
-where
-    T: Debug + Copy + Default + Add<Output = T> + AddAssign + Mul<Output = T> + Send + 'static,
-{
-    type Output = Self;
-
-    fn mul(self, rhs: Self) -> Self::Output {
-        multiply(&self, &rhs).expect("Failed to multiply matrices")
-    }
-}
-
 impl<T> MsgInput<T> {
     pub fn new(idx: usize, row: Vector<T>, col: Vector<T>) -> Self {
         Self { idx, row, col }
@@ -166,6 +155,17 @@ impl<T> MsgInput<T> {
 impl<T> Msg<T> {
     pub fn new(input: MsgInput<T>, sender: oneshot::Sender<MsgOutput<T>>) -> Self {
         Self { input, sender }
+    }
+}
+
+impl<T> Mul for Matrix<T>
+where
+    T: Debug + Copy + Default + Add<Output = T> + AddAssign + Mul<Output = T> + Send + 'static,
+{
+    type Output = Self;
+
+    fn mul(self, rhs: Self) -> Self::Output {
+        multiply(&self, &rhs).expect("Failed to multiply matrices")
     }
 }
 
