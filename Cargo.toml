@@ -10,3 +10,6 @@ anyhow = "1.0.82"
 dashmap = "5.5.3"
 oneshot = "0.1.6"
 rand = "0.8.5"
+reqwest = { version = "0.12.4", features = ["blocking", "rustls-tls"] }
+scraper = "0.19.0"
+thiserror = "1.0.59"
