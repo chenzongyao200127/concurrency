@@ -97,3 +97,27 @@ Rust中的原子操作支持多种内存顺序，以确保在并发环境中对�
 
 [无畏并发]
 https://doc.rust-lang.org/book/ch16-01-threads.html#using-threads-to-run-code-simultaneously
+
+# Rust 异步编程
+
+1. 什么是 Promise/Feature
+2. 为什么需要异步处理?
+3. Rust 为什么不直接提供运行时?
+4. Tokio 做了什么?
+5. 探索异步处理内部的机制?
+
+~~~rust
+pub trait Future {
+    type Output;
+
+    // Required method
+    fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output>;
+}
+
+pub enum Poll<T> {
+    Ready(T),
+    Pending,
+}
+~~~
+
+self reference data structure
